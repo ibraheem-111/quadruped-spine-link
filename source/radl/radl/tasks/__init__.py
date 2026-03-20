@@ -10,6 +10,7 @@
 ##
 
 from isaaclab_tasks.utils import import_packages
+import radl.tasks.manager_based
 
 # The blacklist is used to prevent importing configs from sub-packages
 _BLACKLIST_PKGS = ["utils", ".mdp"]
