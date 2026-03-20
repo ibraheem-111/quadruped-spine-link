@@ -1,3 +1,8 @@
+Move latest robot model to assets
+```
+Copy-Item "C:\Users\mibrahe5\Documents\go_spine_new\go2_spine_a0_locked_train_ready.usd" ".\source\radl\radl\assets\robots\go2_spine_a0_locked.usd"
+```
+
 # Template for Isaac Lab Projects
 
 ## Overview
