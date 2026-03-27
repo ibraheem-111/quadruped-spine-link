@@ -21,17 +21,14 @@
 #         self.terminations.base_contact.params["asset_cfg"].body_names = base_body
 from isaaclab.utils import configclass
 
-# We reuse the entire Go2 Flat velocity task definition (rewards, obs, resets, terrain plane, etc.)
-from isaaclab_tasks.manager_based.locomotion.velocity.config.go2.flat_env_cfg import (
-    UnitreeGo2FlatEnvCfg,
-)
+from .rough_env_cfg import UnitreeGo2SpineA0LockedRoughEnvCfg
 
 # Your custom robot spawn config (points to your modified USD)
 from radl.robots.go2_spine_a0_locked_cfg import UNITREE_GO2_SPINE_A0_LOCKED_CFG
 
 
 @configclass
-class UnitreeGo2SpineA0LockedFlatEnvCfg(UnitreeGo2FlatEnvCfg):
+class UnitreeGo2SpineA0LockedFlatEnvCfg(UnitreeGo2SpineA0LockedRoughEnvCfg):
     """Flat velocity-tracking locomotion task using the custom Go2 USD with A0 locked spine.
 
     Notes on what this class is doing:
@@ -42,6 +39,15 @@ class UnitreeGo2SpineA0LockedFlatEnvCfg(UnitreeGo2FlatEnvCfg):
 
     def __post_init__(self):
         super().__post_init__()
+
+        self.rewards.flat_orientation_l2.weight = -2.5
+        self.rewards.feet_air_time.weight = 0.25
+
+        self.scene.terrain.terrain_type = "plane"
+        self.scene.terrain.terrain_generator = None
+        self.scene.height_scanner = None
+        self.observations.policy.height_scan = None
+        self.curriculum.terrain_levels = None
 
         # Canonical base-like body for any inherited single-body assumptions.
         CANONICAL_BASE_BODY = "trunk_front"
