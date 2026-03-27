@@ -3,6 +3,25 @@ Move latest robot model to assets
 Copy-Item "C:\Users\mibrahe5\Documents\go_spine_new\go2_spine_a0_locked_train_ready.usd" ".\source\radl\radl\assets\robots\go2_spine_a0_locked.usd"
 ```
 
+# Debug Commands:
+```
+python .\scripts\zero_agent.py --task Template-Velocity-Flat-Unitree-Go2-SpineA0Locked-Debug-v0 --num_envs 
+```
+
+```
+python .\scripts\rsl_rl\play.py --task Template-Velocity-Flat-Unitree-Go2-SpineA0Locked-Debug-v0 --num_envs 
+```
+
+# Train Commands:
+```
+python .\scripts\rsl_rl\train.py --task Template-Velocity-Flat-Unitree-Go2-SpineA0Locked-v0 --num_envs 128 --max_iterations 3000 --seed 42 --experiment_name go2_spine_articulated --headless
+```
+
+# Test Command:
+```
+python play.py --task Template-Velocity-Flat-Unitree-Go2-SpineA0Locked-v0 --num_envs 1 --experiment_name go2_spine_articulated --load_run 2026-03-27_04-22-57 --checkpoint model_3000.pt
+```
+
 # Template for Isaac Lab Projects
 
 ## Overview
