@@ -128,3 +128,48 @@ class UnitreeGo2SpineA0LockedFlatEnvCfg_PLAY(UnitreeGo2SpineA0LockedFlatEnvCfg):
             self.events.base_external_force_torque = None
         if hasattr(self.events, "push_robot"):
             self.events.push_robot = None
+
+
+@configclass
+class UnitreeGo2SpineA0LockedFlatEnvCfg_DEBUG(UnitreeGo2SpineA0LockedFlatEnvCfg):
+    """Debug variant with deterministic initialization for startup diagnostics."""
+
+    def __post_init__(self):
+        super().__post_init__()
+
+        if hasattr(self.events, "add_base_mass"):
+            self.events.add_base_mass = None
+        if hasattr(self.events, "base_external_force_torque"):
+            self.events.base_external_force_torque = None
+        if hasattr(self.events, "base_com"):
+            self.events.base_com = None
+        if hasattr(self.events, "push_robot"):
+            self.events.push_robot = None
+
+        if hasattr(self.events, "reset_base") and self.events.reset_base is not None:
+            self.events.reset_base.params = {
+                "pose_range": {
+                    "x": (0.0, 0.0),
+                    "y": (0.0, 0.0),
+                    "yaw": (0.0, 0.0),
+                },
+                "velocity_range": {
+                    "x": (0.0, 0.0),
+                    "y": (0.0, 0.0),
+                    "z": (0.0, 0.0),
+                    "roll": (0.0, 0.0),
+                    "pitch": (0.0, 0.0),
+                    "yaw": (0.0, 0.0),
+                },
+            }
+
+
+@configclass
+class UnitreeGo2SpineA0LockedFlatEnvCfg_DEBUG_PLAY(UnitreeGo2SpineA0LockedFlatEnvCfg_DEBUG):
+    def __post_init__(self):
+        super().__post_init__()
+
+        self.scene.num_envs = 50
+        self.scene.env_spacing = 2.5
+
+        self.observations.policy.enable_corruption = False
