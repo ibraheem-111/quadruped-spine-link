@@ -17,9 +17,19 @@ python .\scripts\rsl_rl\play.py --task Template-Velocity-Flat-Unitree-Go2-SpineA
 python .\scripts\rsl_rl\train.py --task Template-Velocity-Flat-Unitree-Go2-SpineA0Locked-v0 --num_envs 128 --max_iterations 3000 --seed 42 --experiment_name go2_spine_articulated --headless
 ```
 
+## Resume Training:
+```
+python .\scripts\rsl_rl\train.py --task Template-Velocity-Flat-Unitree-Go2-SpineA0Locked-v0 --num_envs 128 --max_iterations 2000 --seed 42 --experiment_name go2_spine_articulated --resume --load_run 2026-03-27_04-22-57 --checkpoint model_999.pt --headless
+```
+
 # Test Command:
 ```
-python play.py --task Template-Velocity-Flat-Unitree-Go2-SpineA0Locked-v0 --num_envs 1 --experiment_name go2_spine_articulated --load_run 2026-03-27_04-22-57 --checkpoint model_3000.pt
+python .\scripts\rsl_rl\play.py --task Template-Velocity-Flat-Unitree-Go2-SpineA0Locked-v0 --num_envs 1 --experiment_name go2_spine_articulated --load_run 2026-03-27_04-22-57 --checkpoint model_3000.pt
+```
+
+# Plot Results
+```
+python .\scripts\plot_training_metrics.py --run-dir .\logs\rsl_rl\go2_spine_articulated\2026-03-27_04-22-57 --smooth-window 10
 ```
 
 # Template for Isaac Lab Projects

@@ -68,6 +68,7 @@ class UnitreeGo2SpineA0LockedFlatEnvCfg(UnitreeGo2SpineA0LockedRoughEnvCfg):
             ".*_hip_joint",
             ".*_thigh_joint",
             ".*_calf_joint",
+            "spine_joint_.*",
         ]
 
         # --------------------------------------------------------------------------------------

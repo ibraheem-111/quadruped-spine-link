@@ -11,7 +11,7 @@ class UnitreeGo2SpineA0LockedRoughEnvCfg(UnitreeGo2RoughEnvCfg):
     def __post_init__(self):
         super().__post_init__()
 
-        canonical_base_body = "trunk_front"
+        canonical_base_body = "trunk_.*"
         torso_bodies_regex = "(base|trunk_.*|spine_.*)"
 
         self.scene.robot = UNITREE_GO2_SPINE_A0_LOCKED_CFG.replace(prim_path="{ENV_REGEX_NS}/Robot")
